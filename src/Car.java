@@ -1,4 +1,8 @@
 
-public class Car {
-
+public class Car 
+{
+	public Car()
+	{
+		
+	}
 }
