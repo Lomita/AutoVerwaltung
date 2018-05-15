@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 
@@ -14,6 +15,10 @@ public class Interface extends JFrame
 	private int ScreenHeight = (int)(IFH.getScreenResolution().getHeight());
 	
 	private JFrame mainWnd;
+	private JList<Vehicle> vehicleList;
+	
+	private JButton add;
+	private JLabel garage;
 	
 	/**
 	 * Constructor
@@ -34,6 +39,24 @@ public class Interface extends JFrame
 		mainWnd.setLocation(ScreenWidth / 4, ScreenHeight / 4);
 		mainWnd.setUndecorated(true);
 		
+		vehicleList = new JList<Vehicle>();
+		vehicleList.setLocation(50,100);
+		vehicleList.setSize(350,400);
+		vehicleList.setFont(new Font("Arial", Font.CENTER_BASELINE, 24));
+		
+		add = new JButton ();
+		add.setBounds(350,35,40,40);
+		add.setIcon(IFH.loadImg("images/add.png"));
+		add.setContentAreaFilled(false);
+		add.setBorder(null);
+		
+		garage = new JLabel("Garage");
+		garage.setBounds(60,10,400,80);
+		garage.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));
+		
+		mainWnd.add(add);
+		mainWnd.add(garage);
+		mainWnd.add(vehicleList);
 		mainWnd.setVisible(true);
 	}
 }
