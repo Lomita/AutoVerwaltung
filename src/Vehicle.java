@@ -39,7 +39,7 @@ public class Vehicle
 	 * get the original price
 	 * @return returns the original price 
 	 */
-	protected float getNewPrice()
+	protected float getOriginalPrice()
 	{
 	/*	float price;
 		price = super.getCalculatedPrice();
