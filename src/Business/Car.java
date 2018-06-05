@@ -1,4 +1,7 @@
- /**
+package Business;
+import DTO.Vehicle;
+
+/**
   * Car class
   * @author Miruku
   * contains the car definition

@@ -1,3 +1,4 @@
+package DTO;
 import java.util.ArrayList;
 
 /**
@@ -7,7 +8,6 @@ import java.util.ArrayList;
  */
 public class Vehicle 
 {	
-	private ArrayList<Vehicle> vehicleList = new ArrayList<Vehicle>();
 	private float price;
 	
 	protected String type;

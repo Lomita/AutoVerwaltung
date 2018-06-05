@@ -1,6 +1,9 @@
+package Prestentation;
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
+
+import DTO.Vehicle;
 
 /**
  * Interface class

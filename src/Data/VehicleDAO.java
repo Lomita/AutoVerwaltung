@@ -2,7 +2,9 @@ package Data;
 
 import java.util.ArrayList;
 
-public class VehicleDAO {
-	private ArrayList<Vehicle> vehicleList = new ArrayList<Vehicle>();
-
+public interface VehicleDAO 
+{
+	public ArrayList<Vehicle> getVehicleList();
+	public addVehicle();
+	public removeVehicle();
 }

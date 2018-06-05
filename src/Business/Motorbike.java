@@ -1,4 +1,7 @@
- /**
+package Business;
+import DTO.Vehicle;
+
+/**
   * Motorbike class
   * @author Miruku
   * contains the motorbike definition
