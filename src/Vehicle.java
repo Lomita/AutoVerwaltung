@@ -26,14 +26,6 @@ public class Vehicle
 		
 	}
 	
-	/**
-	 *  calculates the effectiv price 
-	 * @return returns the effectiv price 
-	 */
-	protected float getCalculatedPrice()
-	{	
-		return price;
-	}
 	
 	/**
 	 * get the original price
@@ -41,8 +33,6 @@ public class Vehicle
 	 */
 	protected float getOriginalPrice()
 	{
-	/*	float price;
-		price = super.getCalculatedPrice();
-	*/	return price;
+	return price;
 	}
 }
