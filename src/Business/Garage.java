@@ -3,12 +3,14 @@ package Business;
 import java.util.ArrayList;
 
 import DTO.Vehicle;
+import Data.VehicleDAO;
 
 public class Garage {
-	private ArrayList<Vehicle> vehicleList = new ArrayList<Vehicle>();
-	
+	VehicleDAO list = new VehicleList();
+
 	public void addVehicle(Vehicle vehicle){
-		vehicleList.add(vehicle);
+		list.addVehicle(vehicle);
 	}
+	
 	
 }
