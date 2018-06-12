@@ -1,4 +1,4 @@
-import Prestentation.Interface;
+import Prestentation.ClientController;
 
 /**
  * Launch class
@@ -7,8 +7,12 @@ import Prestentation.Interface;
  */
 public class Launch 
 {
+	/**
+	 * main
+	 * @param args
+	 */
 	public static void main(String[] args) 
 	{
-		Interface infa = new Interface();
+		ClientController infa = new ClientController();
 	}
 }

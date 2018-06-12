@@ -4,11 +4,11 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- * Interface Helper class
- * @author Silian Barlogis
- * contains functions for interfaces
+ * Client Helper class
+ * @author Miruku
+ * contains functions for guis
  */
-public class InterfaceHelper
+public class ClientHelper
 {
 	/**
 	 * Get image from path
