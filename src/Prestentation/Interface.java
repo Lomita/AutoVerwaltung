@@ -28,6 +28,7 @@ public class Interface extends JFrame
 	 */
 	public Interface()
 	{
+		Garage gar=new Garage()
 		createInterface();
 	}
 	
