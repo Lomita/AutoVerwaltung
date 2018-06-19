@@ -23,15 +23,9 @@ public class ClientController extends JFrame implements ActionListener
 	private JFrame mainWnd;
 	private JList<Vehicle> vehicleList;
 	
-<<<<<<< HEAD
 	private JButton add, bSave;
 	private JLabel garage, type, brand, model, price, ps, km, csp, col, lAdd, addOption;
 	private JTextField tBrand, tModel, tPrice, tPS, tKM, tCSP, tCol, taddOption;
-=======
-	private JButton add;
-	private JLabel garage, type, brand, model, price, ps;
-	private JTextField tBrand, tModel, tPrice, tPS;
->>>>>>> cc81adddaaa1550fb814a095f1ed42c4f9ff22ee
 	private JComboBox<String> cbType;
 	private int index;
 	
@@ -88,15 +82,10 @@ public class ClientController extends JFrame implements ActionListener
 	 * Creat the type ComboBox
 	 */
 	private void addTypeBox()
-<<<<<<< HEAD
 	{	
 		lAdd = new JLabel("Hinzufügen");
 		lAdd.setBounds(560,10,300,80);
 		lAdd.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));
-		
-=======
-	{
->>>>>>> cc81adddaaa1550fb814a095f1ed42c4f9ff22ee
 		type = new JLabel("Typ:");
 		type.setBounds(440,100,150,35);
 		type.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
@@ -175,7 +164,6 @@ public class ClientController extends JFrame implements ActionListener
 		mainWnd.add(tPrice);
 		mainWnd.add(ps);
 		mainWnd.add(tPS);
-<<<<<<< HEAD
 		mainWnd.add(csp);
 		mainWnd.add(tCSP);
 		mainWnd.add(km);
@@ -183,9 +171,6 @@ public class ClientController extends JFrame implements ActionListener
 		mainWnd.add(col);
 		mainWnd.add(tCol);
 		mainWnd.add(bSave);
-=======
-		
->>>>>>> cc81adddaaa1550fb814a095f1ed42c4f9ff22ee
 		
 		mainWnd.repaint();
 	}
