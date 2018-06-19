@@ -12,7 +12,7 @@ public class Car extends Vehicle {
 	/**
 	 * Constructor
 	 */
-	public Car(String type, String brand, String model, double originalPrice, int hp, int consumption, int mileage,
+	public Car(String type, String brand, String model, double originalPrice, int hp, double consumption, int mileage,
 			String color, int doorAmount) {
 		super(type, brand, model, originalPrice, hp, consumption, mileage, color);
 		this.doorAmount = doorAmount;
@@ -32,4 +32,15 @@ public class Car extends Vehicle {
 	public void setDoorAmount(int doorAmount) {
 		this.doorAmount = doorAmount;
 	}
+
+	@Override
+	public String toString() {
+		return "Car [doorAmount=" + doorAmount + ", type=" + type + ", brand=" + brand + ", model=" + model
+				+ ", originalPrice=" + originalPrice + ", hp=" + hp + ", consumption=" + consumption + ", mileage="
+				+ mileage + ", color=" + color + ", getCalculatedPrice()=" + getCalculatedPrice() + ", getDoorAmount()="
+				+ getDoorAmount() + ", getOriginalPrice()=" + getOriginalPrice() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
+	
+	
 }

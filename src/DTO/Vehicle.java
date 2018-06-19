@@ -11,7 +11,7 @@ public abstract class Vehicle {
 	protected String model;
 	protected double originalPrice;
 	protected int hp;
-	protected int consumption;
+	protected double consumption;
 	protected int mileage;
 	protected String color;
 
@@ -19,7 +19,7 @@ public abstract class Vehicle {
 	 * Constructor
 	 */
 
-	public Vehicle(String type, String brand, String model, double originalPrice, int hp, int consumption, int mileage,
+	public Vehicle(String type, String brand, String model, double originalPrice, int hp, double consumption, int mileage,
 			String color) {
 		this.type = type;
 		this.brand = brand;
