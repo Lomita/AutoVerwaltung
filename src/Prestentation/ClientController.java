@@ -23,11 +23,13 @@ public class ClientController extends JFrame implements ActionListener
 	private JFrame mainWnd;
 	private JList<Vehicle> vehicleList;
 	
-	private JButton add;
-	private JLabel garage, type, brand, model, price, ps;
-	private JTextField tBrand, tModel, tPrice, tPS;
+	private JButton add, bSave;
+	private JLabel garage, type, brand, model, price, ps, km, csp, col, lAdd, addOption;
+	private JTextField tBrand, tModel, tPrice, tPS, tKM, tCSP, tCol, taddOption;
 	private JComboBox<String> cbType;
 	private int index;
+	
+	private boolean isAddMode = false;
 	
 	private Garage gar;
 	
@@ -81,7 +83,10 @@ public class ClientController extends JFrame implements ActionListener
 	 * Creat the type ComboBox
 	 */
 	private void addTypeBox()
-	{
+	{	
+		lAdd = new JLabel("Hinzufügen");
+		lAdd.setBounds(560,10,300,80);
+		lAdd.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));
 		type = new JLabel("Typ:");
 		type.setBounds(440,100,150,35);
 		type.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
@@ -92,8 +97,12 @@ public class ClientController extends JFrame implements ActionListener
 		cbType.setSelectedIndex(index);
 		cbType.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
 		
+		mainWnd.add(lAdd);
 		mainWnd.add(type);
 		mainWnd.add(cbType);
+		
+		cbType.addActionListener(this);
+		
 		mainWnd.repaint();
 	}
 	
@@ -142,6 +151,12 @@ public class ClientController extends JFrame implements ActionListener
 		tPS.setBounds(560,260,180,35);
 		tPS.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
 		
+		bSave = new JButton("Speichern");
+		bSave.setBounds(560,470,250,50);
+		bSave.setBackground(Color.BLACK);
+		bSave.setForeground(Color.WHITE);
+		bSave.setFont(new Font("Arial", Font.CENTER_BASELINE, 25));
+		
 		mainWnd.add(brand);
 		mainWnd.add(tBrand);
 		mainWnd.add(model);
@@ -150,7 +165,13 @@ public class ClientController extends JFrame implements ActionListener
 		mainWnd.add(tPrice);
 		mainWnd.add(ps);
 		mainWnd.add(tPS);
-		
+		mainWnd.add(csp);
+		mainWnd.add(tCSP);
+		mainWnd.add(km);
+		mainWnd.add(tKM);
+		mainWnd.add(col);
+		mainWnd.add(tCol);
+		mainWnd.add(bSave);
 		
 		mainWnd.repaint();
 	}
@@ -168,20 +189,41 @@ public class ClientController extends JFrame implements ActionListener
 		/*Car*/
 		if(index == 0)
 		{
+			addOption = new JLabel("Anzhal Türen:");
+			addOption.setBounds(470,420,150,35);
+			addOption.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 			
+			taddOption = new JTextField();
+			taddOption.setBounds(630,420,220,35);
+			taddOption.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		}	
 		
 		/*Quad*/
 		else if(index == 1)
 		{
+			addOption = new JLabel("Bodenfreiheit:");
+			addOption.setBounds(470,420,150,35);
+			addOption.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 			
+			taddOption = new JTextField();
+			taddOption.setBounds(630,420,220,35);
+			taddOption.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		}
 		
 		/*Motorbike*/
 		else if(index == 2)
 		{
+			addOption = new JLabel("Gewicht:");
+			addOption.setBounds(470,420,150,35);
+			addOption.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 			
+			taddOption = new JTextField();
+			taddOption.setBounds(630,420,220,35);
+			taddOption.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		}
+		
+		mainWnd.add(addOption);
+		mainWnd.add(taddOption);
 	}
 	
 	/**
@@ -191,13 +233,23 @@ public class ClientController extends JFrame implements ActionListener
 	{
 		if(event.getSource() == add)
 		{
-			addTypeBox();
-			createFormular();
-			createAdditionalOptions(cbType.getSelectedIndex());	
+			if(isAddMode == false)
+			{	
+				isAddMode = true;
+				addTypeBox();
+				createFormular();
+				createAdditionalOptions(cbType.getSelectedIndex());	
+			}
 		}
 		if(event.getSource() == cbType)
 		{
+			if(addOption != null)
+				mainWnd.remove(addOption);
+			if(taddOption != null)
+				mainWnd.remove(taddOption);
+			
 			createAdditionalOptions(cbType.getSelectedIndex());	
+			mainWnd.repaint();
 		}
 	}
 }
