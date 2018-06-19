@@ -3,36 +3,33 @@ import java.util.ArrayList;
 
 /**
  * Vehicle class
- * @author Miruku
  * contains the vehicle definition
  */
 public class Vehicle 
 {	
-	private float price;
-	
 	protected String type;
 	protected String brand;
 	protected String model;
+	protected double originalPrice;
 	protected int hp;
 	protected int consumption;
-	protected int km;
-	protected int doorAmount;
+	protected int mileage;
+	protected String color;
 	
 	/**
 	 * Constructor
 	 */
-	public Vehicle()
+	public Vehicle(String type, String brand, String model, double originalPrice, int hp, int consumption, int mileage, String color)
 	{
-		
+		this.type=type;
 	}
-	
 	
 	/**
 	 * get the original price
 	 * @return returns the original price 
 	 */
-	protected float getOriginalPrice()
+	protected double getOriginalPrice()
 	{
-	return price;
+		return this.originalPrice;
 	}
 }
