@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.*;
 import javax.swing.*;
 
+import Business.Garage;
 import DTO.Vehicle;
 
 /**
@@ -27,6 +28,8 @@ public class ClientController extends JFrame implements ActionListener
 	private JTextField tBrand, tModel, tPrice, tPS;
 	private JComboBox<String> cbType;
 	private int index;
+	
+	private Garage gar;
 	
 	/**
 	 * Constructor
@@ -159,7 +162,7 @@ public class ClientController extends JFrame implements ActionListener
 	 * 2 = Motorbike 
 	 * @param index
 	 */
-	public void createAdditionalOptions(int index)
+	private void createAdditionalOptions(int index)
 	{
 		/*Car*/
 		if(index == 0)

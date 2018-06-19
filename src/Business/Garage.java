@@ -15,5 +15,5 @@ public class Garage {
 
 	public Garage() {
 		VehicleDAO list = new VehicleList();
-	}
+	}	
 }
