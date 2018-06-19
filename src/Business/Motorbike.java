@@ -8,23 +8,35 @@ import DTO.Vehicle;
   */
 public class Motorbike extends Vehicle
 {
+	private double weight;
 	/**
 	 * Constructor
 	 */
-	public Motorbike()
-	{
-	
-	
+	public Motorbike(String type, String brand, String model, double originalPrice, int hp, int consumption, int mileage,
+			String color, int weight) {
+		super(type, brand, model, originalPrice, hp, consumption, mileage, color);
+		this.weight = weight;
 	}
 	
 	/**
 	 *  calculates the effective price 
 	 * @return returns the effective price 
 	 */
-	protected float getCalculatedPrice()
+	public double getCalculatedPrice()
 	{	
-		float price;
-		price = this.getOriginalPrice();
-		return price;
+		double price = this.getOriginalPrice();
+		int numberOfDeduction= mileage / 10000;
+		price = price- (numberOfDeduction * (price/100*5));
+		return price < 0 ? 0 : price;
 	}
+
+	public double getWeight() {
+		return weight;
+	}
+
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
+	
+	
 }
