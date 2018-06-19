@@ -23,9 +23,15 @@ public class ClientController extends JFrame implements ActionListener
 	private JFrame mainWnd;
 	private JList<Vehicle> vehicleList;
 	
+<<<<<<< HEAD
 	private JButton add, bSave;
 	private JLabel garage, type, brand, model, price, ps, km, csp, col, lAdd, addOption;
 	private JTextField tBrand, tModel, tPrice, tPS, tKM, tCSP, tCol, taddOption;
+=======
+	private JButton add;
+	private JLabel garage, type, brand, model, price, ps;
+	private JTextField tBrand, tModel, tPrice, tPS;
+>>>>>>> cc81adddaaa1550fb814a095f1ed42c4f9ff22ee
 	private JComboBox<String> cbType;
 	private int index;
 	
@@ -82,20 +88,24 @@ public class ClientController extends JFrame implements ActionListener
 	 * Creat the type ComboBox
 	 */
 	private void addTypeBox()
+<<<<<<< HEAD
 	{	
 		lAdd = new JLabel("Hinzufügen");
 		lAdd.setBounds(560,10,300,80);
 		lAdd.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));
 		
+=======
+	{
+>>>>>>> cc81adddaaa1550fb814a095f1ed42c4f9ff22ee
 		type = new JLabel("Typ:");
-		type.setBounds(470,100,150,35);
-		type.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		type.setBounds(440,100,150,35);
+		type.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
 		
 		String[] raceStr = {"Auto","Quad","Motorrad"};
 		cbType = new JComboBox<String>(raceStr);
-		cbType.setBounds(630,100,100,35);
+		cbType.setBounds(560,100,100,35);
 		cbType.setSelectedIndex(index);
-		cbType.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		cbType.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
 		
 		mainWnd.add(lAdd);
 		mainWnd.add(type);
@@ -112,60 +122,44 @@ public class ClientController extends JFrame implements ActionListener
 	private void createFormular()
 	{
 		brand = new JLabel("Marke:");
-		brand.setBounds(470,140,150,35);
-		brand.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		brand.setBounds(440,140,150,35);
+		brand.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
 		
 		tBrand = new JTextField();
-		tBrand.setBounds(630,140,220,35);
-		tBrand.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		tBrand.setBounds(560,140,180,35);
+		tBrand.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
 		
 		model = new JLabel("Model/Name:");
-		model.setBounds(470,180,150,35);
-		model.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		model.setBounds(440,180,150,35);
+		model.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
 		
 		tModel = new JTextField();
-		tModel.setBounds(630,180,220,35);
-		tModel.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		tModel.setBounds(560,180,180,35);
+		tModel.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
 		
 		price = new JLabel("Preis:");
-		price.setBounds(470,220,150,35);
-		price.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		price.setBounds(440,220,150,35);
+		price.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
 		
 		tPrice = new JTextField();
-		tPrice.setBounds(630,220,220,35);
-		tPrice.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		tPrice.setBounds(560,220,180,35);
+		tPrice.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
 		
-		ps = new JLabel("Leistung(PS):");
-		ps.setBounds(470,260,150,35);
-		ps.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		ps = new JLabel("Leistung:");
+		ps.setBounds(440,260,150,35);
+		ps.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
 		
 		tPS = new JTextField();
-		tPS.setBounds(630,260,220,35);
-		tPS.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		tPS.setBounds(560,260,180,35);
+		tPS.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
 		
-		csp = new JLabel("Verbrauch:");
-		csp.setBounds(470,300,150,35);
-		csp.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		ps = new JLabel("Leistung:");
+		ps.setBounds(440,260,150,35);
+		ps.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
 		
-		tCSP = new JTextField();
-		tCSP.setBounds(630,300,220,35);
-		tCSP.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
-		
-		km = new JLabel("KM-Stand:");
-		km.setBounds(470,340,150,35);
-		km.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
-		
-		tKM = new JTextField();
-		tKM.setBounds(630,340,220,35);
-		tKM.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
-		
-		col = new JLabel("Farbe:");
-		col.setBounds(470,380,150,35);
-		col.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
-		
-		tCol = new JTextField();
-		tCol.setBounds(630,380,220,35);
-		tCol.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		tPS = new JTextField();
+		tPS.setBounds(560,260,180,35);
+		tPS.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
 		
 		bSave = new JButton("Speichern");
 		bSave.setBounds(560,470,250,50);
@@ -181,6 +175,7 @@ public class ClientController extends JFrame implements ActionListener
 		mainWnd.add(tPrice);
 		mainWnd.add(ps);
 		mainWnd.add(tPS);
+<<<<<<< HEAD
 		mainWnd.add(csp);
 		mainWnd.add(tCSP);
 		mainWnd.add(km);
@@ -188,6 +183,9 @@ public class ClientController extends JFrame implements ActionListener
 		mainWnd.add(col);
 		mainWnd.add(tCol);
 		mainWnd.add(bSave);
+=======
+		
+>>>>>>> cc81adddaaa1550fb814a095f1ed42c4f9ff22ee
 		
 		mainWnd.repaint();
 	}
