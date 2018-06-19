@@ -1,9 +1,7 @@
-<<<<<<< HEAD
 import Data.VehicleDAO;
 import Prestentation.Interface;
-=======
+
 import Prestentation.ClientController;
->>>>>>> b3aaba3b3333a5917c915bdd30e4068fef07a9c1
 
 /**
  * Launch class
