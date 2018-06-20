@@ -246,6 +246,101 @@ public class ClientController extends JFrame implements ActionListener
 	}
 	
 	/**
+	 * Checks the values
+	 * @return true if checks are successful and false if not 
+	 */
+	private boolean CheckValues()
+	{
+		boolean brand = false, model = false,price = false,ps = false, 
+				km = false,csp = false,color = false,addoption = false;
+		
+		/*Brand*/
+		if(tBrand.getText().equals(""))
+			tBrand.setBorder(new LineBorder(Color.RED));
+		else
+		{
+			tBrand.setBorder(new LineBorder(Color.GRAY));
+			brand = true;
+		}
+		/*Model*/
+		if(tModel.getText().equals(""))
+			tModel.setBorder(new LineBorder(Color.RED));
+		else
+		{
+			tModel.setBorder(new LineBorder(Color.GRAY));
+			model = true;
+		}	
+		/*Price*/
+		if(!(tPrice.getText().matches("\\b([0-9]{1,7})(\\.([0-9]{1,2}))?\\b")) || tPrice.getText().equals(""))
+			tPrice.setBorder(new LineBorder(Color.RED));
+		else
+		{
+			tPrice.setBorder(new LineBorder(Color.GRAY));
+			price = true;
+		}	
+		/*PS*/
+		if(!(tPS.getText().matches("[0-9]*")) || tPS.getText().equals(""))
+			tPS.setBorder(new LineBorder(Color.RED));
+		else
+		{
+			tPS.setBorder(new LineBorder(Color.GRAY));
+			ps = true;
+		}
+		/*KM*/
+		if(!(tKM.getText().matches("[0-9]*")) || tKM.getText().equals(""))
+			tKM.setBorder(new LineBorder(Color.RED));
+		else
+		{
+			tKM.setBorder(new LineBorder(Color.GRAY));
+			km = true;
+		}	
+		/*Consumption*/
+		if(!(tCSP.getText().matches("\\b([0-9]{1,7})(\\.([0-9]{1,2}))?\\b")) || tCSP.getText().equals(""))
+			tCSP.setBorder(new LineBorder(Color.RED));
+		else
+		{
+			tCSP.setBorder(new LineBorder(Color.GRAY));
+			csp = true;
+		}	
+		/*Color*/
+		if(tCol.getText().equals(""))
+			tCol.setBorder(new LineBorder(Color.RED));
+		else
+		{
+			tCol.setBorder(new LineBorder(Color.GRAY));	
+			color = true;
+		}		
+		/*Additional Option Quad (double)*/
+		if(index == 1) 
+		{
+			if(!(taddOption.getText().matches("\\b([0-9]{1,3})(\\.([0-9]))?\\b")) || taddOption.getText().equals(""))
+				taddOption.setBorder(new LineBorder(Color.RED));
+			else
+			{
+				taddOption.setBorder(new LineBorder(Color.GRAY));
+				addoption = true;
+			}
+		}
+		/*Additional Option Car and Motorbike (int)*/ 
+		else if(index == 2 || index == 0)
+		{
+			if(!(taddOption.getText().matches("\\b([0-9]{1,3})\\b")) || taddOption.getText().equals(""))
+				taddOption.setBorder(new LineBorder(Color.RED));
+			else
+			{
+				taddOption.setBorder(new LineBorder(Color.GRAY));
+				addoption = true;
+			}	
+		}
+		
+		if(brand == true && model == true && price == true && ps == true && 
+		   km == true && csp == true && color == true && addoption == true)
+			return true;
+		else
+			return false;
+	}
+	
+	/**
 	 * actionPerformer 
 	 */
 	public void actionPerformed(ActionEvent event) 
@@ -286,77 +381,12 @@ public class ClientController extends JFrame implements ActionListener
 		 */
 		if(event.getSource() == bSave)
 		{
-			/*Brand*/
-			if(tBrand.getText().equals(""))
-				tBrand.setBorder(new LineBorder(Color.RED));
-			else
-				tBrand.setBorder(new LineBorder(Color.GRAY));
-			
-			/*Model*/
-			if(tModel.getText().equals(""))
-				tModel.setBorder(new LineBorder(Color.RED));
-			else
-				tModel.setBorder(new LineBorder(Color.GRAY));
-		
-			/*Price*/
-			if(!(tPrice.getText().matches("\\b([0-9]{1,7})(\\.([0-9]{1,2}))?\\b")) || tPrice.getText().equals(""))
-				tPrice.setBorder(new LineBorder(Color.RED));
-			else
-				tPrice.setBorder(new LineBorder(Color.GRAY));
-			
-			/*PS*/
-			if(!(tPS.getText().matches("[0-9]*")) || tPS.getText().equals(""))
-				tPS.setBorder(new LineBorder(Color.RED));
-			else
-				tPS.setBorder(new LineBorder(Color.GRAY));
-			
-			/*KM*/
-			if(!(tKM.getText().matches("[0-9]*")) || tKM.getText().equals(""))
-				tKM.setBorder(new LineBorder(Color.RED));
-			else
-				tKM.setBorder(new LineBorder(Color.GRAY));
-			
-			/*Consumption*/
-			if(!(tCSP.getText().matches("\\b([0-9]{1,7})(\\.([0-9]{1,2}))?\\b")) || tCSP.getText().equals(""))
-				tCSP.setBorder(new LineBorder(Color.RED));
-			else
-				tCSP.setBorder(new LineBorder(Color.GRAY));
-			
-			/*Color*/
-			if(tCol.getText().equals(""))
-				tCol.setBorder(new LineBorder(Color.RED));
-			else
-				tCol.setBorder(new LineBorder(Color.GRAY));
-			
-			/*Additional Option Quad (double)*/
-			if(index == 1) 
+			if(CheckValues() == true)
 			{
-				if(!(taddOption.getText().matches("\\b([0-9]{1,3})(\\.([0-9]))?\\b")) || taddOption.getText().equals(""))
-					taddOption.setBorder(new LineBorder(Color.RED));
-				else
-					taddOption.setBorder(new LineBorder(Color.GRAY));
+				System.out.println("successful");
 			}
-			/*Additional Option Car and Motorbike (int)*/ 
-			else if(index == 2 || index == 0)
-			{
-				if(!(taddOption.getText().matches("\\b([0-9]{1,3})\\b")) || taddOption.getText().equals(""))
-					taddOption.setBorder(new LineBorder(Color.RED));
-				else
-					taddOption.setBorder(new LineBorder(Color.GRAY));
-			}
+			else
+			System.out.println("failed");
 		}
 	}
 }
-
-/*
-time = Integer.parseInt(tftime.getText());
-Car
-if(index == 0)
-{
-	tModel.getText();
-	
-	Vehicle vehicle = new Car("Car", tBrand.getText(), tModel.getText(), ((double)tPrice.getText()), 
-							 ((int)tPS.getText()), ((int)tKM.getText()), ((int)tCSP.getText()), 
-							 tCol.getText(), taddOption.getText()); 
-	gar.addVehicle(vehicle);
-}*/
