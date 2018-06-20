@@ -9,7 +9,7 @@ import DTO.Vehicle;
 public class Quad extends Vehicle {
 	private double groundClearance;
 
-	public Quad(String type, String brand, String model, double originalPrice, int hp, int consumption, int mileage,
+	public Quad(String type, String brand, String model, double originalPrice, int hp, double consumption, int mileage,
 			String color, double groundClearance) {
 		super(type, brand, model, originalPrice, hp, consumption, mileage, color);
 		this.groundClearance = groundClearance;
@@ -28,6 +28,16 @@ public class Quad extends Vehicle {
 
 	public void setGroundClearance(double groundClearance) {
 		this.groundClearance = groundClearance;
+	}
+
+	@Override
+	public String toString() {
+		return "Quad [groundClearance=" + groundClearance + ", type=" + type + ", brand=" + brand + ", model=" + model
+				+ ", originalPrice=" + originalPrice + ", hp=" + hp + ", consumption=" + consumption + ", mileage="
+				+ mileage + ", color=" + color + ", getCalculatedPrice()=" + getCalculatedPrice()
+				+ ", getGroundClearance()=" + getGroundClearance() + ", getOriginalPrice()=" + getOriginalPrice()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
 
 }

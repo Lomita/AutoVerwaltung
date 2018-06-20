@@ -44,6 +44,7 @@ public class ClientController extends JFrame implements ActionListener
 		gar = new Garage();
 		index = 1;
 		createInterface();
+		Garage garage=new Garage();
 	}
 	
 	/**

@@ -12,7 +12,7 @@ public class Motorbike extends Vehicle
 	/**
 	 * Constructor
 	 */
-	public Motorbike(String type, String brand, String model, double originalPrice, int hp, int consumption, int mileage,
+	public Motorbike(String type, String brand, String model, double originalPrice, int hp, double consumption, int mileage,
 			String color, int weight) {
 		super(type, brand, model, originalPrice, hp, consumption, mileage, color);
 		this.weight = weight;
