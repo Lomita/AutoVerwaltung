@@ -2,10 +2,8 @@ package Prestentation;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import javax.swing.text.Highlighter;
 
 import Business.Car;
 import Business.Garage;
@@ -262,7 +260,8 @@ public class ClientController extends JFrame implements ActionListener
 				isAddMode = true;
 				addTypeBox();
 				createFormular();
-				createAdditionalOptions(cbType.getSelectedIndex());	
+				index = cbType.getSelectedIndex();
+				createAdditionalOptions(index);	
 				mainWnd.repaint();
 			}
 		}
@@ -277,7 +276,8 @@ public class ClientController extends JFrame implements ActionListener
 			if(taddOption != null)
 				mainWnd.remove(taddOption);
 			
-			createAdditionalOptions(cbType.getSelectedIndex());	
+			index = cbType.getSelectedIndex();
+			createAdditionalOptions(index);	
 			mainWnd.repaint();
 		}
 		
@@ -317,7 +317,7 @@ public class ClientController extends JFrame implements ActionListener
 				tKM.setBorder(new LineBorder(Color.GRAY));
 			
 			/*Consumption*/
-			if(!(tCSP.getText().matches("[0-9]*")) || tCSP.getText().equals(""))
+			if(!(tCSP.getText().matches("\\b([0-9]{1,7})(\\.([0-9]{1,2}))?\\b")) || tCSP.getText().equals(""))
 				tCSP.setBorder(new LineBorder(Color.RED));
 			else
 				tCSP.setBorder(new LineBorder(Color.GRAY));
@@ -331,7 +331,7 @@ public class ClientController extends JFrame implements ActionListener
 			/*Additional Option Quad (double)*/
 			if(index == 1) 
 			{
-				if(!(taddOption.getText().matches("\\b([0-9]{1,2})(\\.([0-9]))?\\b")) || taddOption.getText().equals(""))
+				if(!(taddOption.getText().matches("\\b([0-9]{1,3})(\\.([0-9]))?\\b")) || taddOption.getText().equals(""))
 					taddOption.setBorder(new LineBorder(Color.RED));
 				else
 					taddOption.setBorder(new LineBorder(Color.GRAY));
@@ -339,7 +339,7 @@ public class ClientController extends JFrame implements ActionListener
 			/*Additional Option Car and Motorbike (int)*/ 
 			else if(index == 2 || index == 0)
 			{
-				if(!(taddOption.getText().matches("\\b[0-9]{1,2}*")) || taddOption.getText().equals(""))
+				if(!(taddOption.getText().matches("\\b([0-9]{1,3})\\b")) || taddOption.getText().equals(""))
 					taddOption.setBorder(new LineBorder(Color.RED));
 				else
 					taddOption.setBorder(new LineBorder(Color.GRAY));
