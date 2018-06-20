@@ -7,6 +7,8 @@ import javax.swing.border.LineBorder;
 
 import Business.Car;
 import Business.Garage;
+import Business.Motorbike;
+import Business.Quad;
 import DTO.Vehicle;
 
 /**
@@ -246,7 +248,7 @@ public class ClientController extends JFrame implements ActionListener
 	}
 	
 	/**
-	 * Checks the values
+	 * Check the values
 	 * @return true if checks are successful and false if not 
 	 */
 	private boolean CheckValues()
@@ -383,10 +385,36 @@ public class ClientController extends JFrame implements ActionListener
 		{
 			if(CheckValues() == true)
 			{
-				System.out.println("successful");
+				/*Car*/
+				if(index == 0)
+				{
+					Vehicle vehicle = new Car("Quad", tBrand.getText(), tModel.getText(), Double.parseDouble(tPrice.getText()), 
+											   Integer.parseInt(tPS.getText()), Integer.parseInt(tCSP.getText()), Integer.parseInt(tKM.getText()), 
+											   tCol.getText(), Integer.parseInt(taddOption.getText())); 
+					gar.addVehicle(vehicle);
+					System.out.println(gar.getVehicleList());
+				}
+				
+				/*Quad*/
+				if(index == 1)
+				{
+					Vehicle vehicle = new Quad("Quad", tBrand.getText(), tModel.getText(), Double.parseDouble(tPrice.getText()), 
+											   Integer.parseInt(tPS.getText()), Integer.parseInt(tCSP.getText()), Integer.parseInt(tKM.getText()),  
+											   tCol.getText(), Double.parseDouble(taddOption.getText())); 
+					gar.addVehicle(vehicle);
+					System.out.println(gar.getVehicleList());
+				}
+				
+				/*Motorbike*/
+				if(index == 2)
+				{
+					Vehicle vehicle = new Motorbike("Quad", tBrand.getText(), tModel.getText(), Double.parseDouble(tPrice.getText()), 
+											   Integer.parseInt(tPS.getText()), Integer.parseInt(tCSP.getText()), Integer.parseInt(tKM.getText()),
+											   tCol.getText(), Integer.parseInt(taddOption.getText())); 
+					gar.addVehicle(vehicle);
+					System.out.println(gar.getVehicleList());
+				}
 			}
-			else
-			System.out.println("failed");
 		}
 	}
 }
