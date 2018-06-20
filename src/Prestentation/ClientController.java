@@ -4,7 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.text.Highlighter;
 
+import Business.Car;
 import Business.Garage;
 import DTO.Vehicle;
 
@@ -38,6 +41,7 @@ public class ClientController extends JFrame implements ActionListener
 	 */
 	public ClientController()
 	{
+		gar = new Garage();
 		index = 1;
 		createInterface();
 	}
@@ -84,17 +88,18 @@ public class ClientController extends JFrame implements ActionListener
 	private void addTypeBox()
 	{	
 		lAdd = new JLabel("Hinzufügen");
-		lAdd.setBounds(560,10,300,80);
+		lAdd.setBounds(470,10,300,80);
 		lAdd.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));
+		
 		type = new JLabel("Typ:");
-		type.setBounds(440,100,150,35);
-		type.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
+		type.setBounds(470,100,150,35);
+		type.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
 		String[] raceStr = {"Auto","Quad","Motorrad"};
 		cbType = new JComboBox<String>(raceStr);
-		cbType.setBounds(560,100,100,35);
+		cbType.setBounds(630,100,100,35);
 		cbType.setSelectedIndex(index);
-		cbType.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
+		cbType.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
 		mainWnd.add(lAdd);
 		mainWnd.add(type);
@@ -111,47 +116,63 @@ public class ClientController extends JFrame implements ActionListener
 	private void createFormular()
 	{
 		brand = new JLabel("Marke:");
-		brand.setBounds(440,140,150,35);
-		brand.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
+		brand.setBounds(470,140,150,35);
+		brand.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
 		tBrand = new JTextField();
-		tBrand.setBounds(560,140,180,35);
-		tBrand.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
+		tBrand.setBounds(630,140,220,35);
+		tBrand.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
 		model = new JLabel("Model/Name:");
-		model.setBounds(440,180,150,35);
-		model.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
+		model.setBounds(470,180,150,35);
+		model.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
 		tModel = new JTextField();
-		tModel.setBounds(560,180,180,35);
-		tModel.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
+		tModel.setBounds(630,180,220,35);
+		tModel.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
 		price = new JLabel("Preis:");
-		price.setBounds(440,220,150,35);
-		price.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
+		price.setBounds(470,220,150,35);
+		price.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
 		tPrice = new JTextField();
-		tPrice.setBounds(560,220,180,35);
-		tPrice.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
+		tPrice.setBounds(630,220,220,35);
+		tPrice.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
-		ps = new JLabel("Leistung:");
-		ps.setBounds(440,260,150,35);
-		ps.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
-		
-		tPS = new JTextField();
-		tPS.setBounds(560,260,180,35);
-		tPS.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
-		
-		ps = new JLabel("Leistung:");
-		ps.setBounds(440,260,150,35);
-		ps.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
+		ps = new JLabel("Leistung(PS):");
+		ps.setBounds(470,260,150,35);
+		ps.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
 		tPS = new JTextField();
-		tPS.setBounds(560,260,180,35);
-		tPS.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
+		tPS.setBounds(630,260,220,35);
+		tPS.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		
+		csp = new JLabel("Verbrauch:");
+		csp.setBounds(470,300,150,35);
+		csp.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		
+		tCSP = new JTextField();
+		tCSP.setBounds(630,300,220,35);
+		tCSP.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		
+		km = new JLabel("KM-Stand:");
+		km.setBounds(470,340,150,35);
+		km.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		
+		tKM = new JTextField();
+		tKM.setBounds(630,340,220,35);
+		tKM.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		
+		col = new JLabel("Color:");
+		col.setBounds(470,380,150,35);
+		col.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		
+		tCol = new JTextField();
+		tCol.setBounds(630,380,220,35);
+		tCol.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
 		bSave = new JButton("Speichern");
-		bSave.setBounds(560,470,250,50);
+		bSave.setBounds(550,470,250,50);
 		bSave.setBackground(Color.BLACK);
 		bSave.setForeground(Color.WHITE);
 		bSave.setFont(new Font("Arial", Font.CENTER_BASELINE, 25));
@@ -172,7 +193,7 @@ public class ClientController extends JFrame implements ActionListener
 		mainWnd.add(tCol);
 		mainWnd.add(bSave);
 		
-		mainWnd.repaint();
+		bSave.addActionListener(this);
 	}
 	
 	/**
@@ -230,6 +251,9 @@ public class ClientController extends JFrame implements ActionListener
 	 */
 	public void actionPerformed(ActionEvent event) 
 	{
+		/**
+		 * add button
+		 */
 		if(event.getSource() == add)
 		{
 			if(isAddMode == false)
@@ -238,8 +262,13 @@ public class ClientController extends JFrame implements ActionListener
 				addTypeBox();
 				createFormular();
 				createAdditionalOptions(cbType.getSelectedIndex());	
+				mainWnd.repaint();
 			}
 		}
+		
+		/**
+		 * onUpdate type Combobox
+		 */
 		if(event.getSource() == cbType)
 		{
 			if(addOption != null)
@@ -250,5 +279,83 @@ public class ClientController extends JFrame implements ActionListener
 			createAdditionalOptions(cbType.getSelectedIndex());	
 			mainWnd.repaint();
 		}
+		
+		/**
+		 * Value Checks and vehicle creation
+		 */
+		if(event.getSource() == bSave)
+		{
+			/*Brand*/
+			if(tBrand.getText().equals(""))
+				tBrand.setBorder(new LineBorder(Color.RED));
+			else
+				tBrand.setBorder(new LineBorder(Color.GRAY));
+			
+			/*Model*/
+			if(tModel.getText().equals(""))
+				tModel.setBorder(new LineBorder(Color.RED));
+			else
+				tModel.setBorder(new LineBorder(Color.GRAY));
+		
+			/*Price*/
+			if(!(tPrice.getText().matches("\\b([0-9]{1,7})(\\.([0-9]{1,2}))?\\b")) || tPrice.getText().equals(""))
+				tPrice.setBorder(new LineBorder(Color.RED));
+			else
+				tPrice.setBorder(new LineBorder(Color.GRAY));
+			
+			/*PS*/
+			if(!(tPS.getText().matches("[0-9]*")) || tPS.getText().equals(""))
+				tPS.setBorder(new LineBorder(Color.RED));
+			else
+				tPS.setBorder(new LineBorder(Color.GRAY));
+			
+			/*KM*/
+			if(!(tKM.getText().matches("[0-9]*")) || tKM.getText().equals(""))
+				tKM.setBorder(new LineBorder(Color.RED));
+			else
+				tKM.setBorder(new LineBorder(Color.GRAY));
+			
+			/*Consumption*/
+			if(!(tCSP.getText().matches("[0-9]*")) || tCSP.getText().equals(""))
+				tCSP.setBorder(new LineBorder(Color.RED));
+			else
+				tCSP.setBorder(new LineBorder(Color.GRAY));
+			
+			/*Color*/
+			if(tCol.getText().equals(""))
+				tCol.setBorder(new LineBorder(Color.RED));
+			else
+				tCol.setBorder(new LineBorder(Color.GRAY));
+			
+			/*Additional Option Quad (double)*/
+			if(index == 1) 
+			{
+				if(!(taddOption.getText().matches("\\b([0-9]{1,2})(\\.([0-9]))?\\b")) || taddOption.getText().equals(""))
+					taddOption.setBorder(new LineBorder(Color.RED));
+				else
+					taddOption.setBorder(new LineBorder(Color.GRAY));
+			}
+			/*Additional Option Car and Motorbike (int)*/ 
+			else if(index == 2 || index == 0)
+			{
+				if(!(taddOption.getText().matches("\\b[0-9]{1,2}*")) || taddOption.getText().equals(""))
+					taddOption.setBorder(new LineBorder(Color.RED));
+				else
+					taddOption.setBorder(new LineBorder(Color.GRAY));
+			}
+		}
 	}
 }
+
+/*
+time = Integer.parseInt(tftime.getText());
+Car
+if(index == 0)
+{
+	tModel.getText();
+	
+	Vehicle vehicle = new Car("Car", tBrand.getText(), tModel.getText(), ((double)tPrice.getText()), 
+							 ((int)tPS.getText()), ((int)tKM.getText()), ((int)tCSP.getText()), 
+							 tCol.getText(), taddOption.getText()); 
+	gar.addVehicle(vehicle);
+}*/
