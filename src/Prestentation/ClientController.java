@@ -2,14 +2,12 @@ package Prestentation;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
-import Business.Car;
-import Business.Garage;
-import Business.Motorbike;
-import Business.Quad;
-import DTO.Vehicle;
+import Business.*;
+import DTO.*;
 
 /**
  * ClientController class
@@ -24,7 +22,9 @@ public class ClientController extends JFrame implements ActionListener
 	private int ScreenHeight = (int)(CH.getScreenResolution().getHeight());
 	
 	private JFrame mainWnd;
-	private JList<Vehicle> vehicleList;
+	private JList<String> vehicleList;
+	private DefaultListModel<String> listModel = new DefaultListModel<>();
+	private JScrollPane scrollPane;
 	
 	private JButton add, bSave;
 	private JLabel garage, type, brand, model, price, ps, km, csp, col, lAdd, addOption;
@@ -44,7 +44,6 @@ public class ClientController extends JFrame implements ActionListener
 		gar = new Garage();
 		index = 1;
 		createInterface();
-		Garage garage=new Garage();
 	}
 	
 	/**
@@ -58,10 +57,11 @@ public class ClientController extends JFrame implements ActionListener
 		mainWnd.setLocation(ScreenWidth / 4, ScreenHeight / 4);
 		mainWnd.setUndecorated(true);
 		
-		vehicleList = new JList<Vehicle>();
-		vehicleList.setLocation(50,100);
-		vehicleList.setSize(350,400);
+		vehicleList = new JList<String>();
+		scrollPane = new JScrollPane(vehicleList);
+		scrollPane.setBounds(50,100,350,400);
 		vehicleList.setFont(new Font("Arial", Font.CENTER_BASELINE, 24));
+		vehicleList.setModel(listModel);
 		
 		add = new JButton ();
 		add.setBounds(350,35,40,40);
@@ -75,7 +75,7 @@ public class ClientController extends JFrame implements ActionListener
 		
 		mainWnd.add(add);
 		mainWnd.add(garage);
-		mainWnd.add(vehicleList);
+		mainWnd.add(scrollPane);
 		
 		mainWnd.setResizable(false);	
 		mainWnd.setVisible(true);
@@ -343,6 +343,23 @@ public class ClientController extends JFrame implements ActionListener
 	}
 	
 	/**
+	 * updates the vehicle list
+	 */
+	private void updateList()
+	{	
+		if(listModel != null)
+			listModel.removeAllElements();
+		
+		int lastIndex = 0;
+		for(Vehicle vehicle : gar.getVehicleList())
+		{
+			lastIndex++;
+			listModel.addElement(vehicle.getModel());
+		}	
+		vehicleList.setSelectedIndex(lastIndex-1);
+	}
+	
+	/**
 	 * actionPerformer 
 	 */
 	public void actionPerformed(ActionEvent event) 
@@ -392,7 +409,6 @@ public class ClientController extends JFrame implements ActionListener
 											   Integer.parseInt(tPS.getText()), Integer.parseInt(tCSP.getText()), Integer.parseInt(tKM.getText()), 
 											   tCol.getText(), Integer.parseInt(taddOption.getText())); 
 					gar.addVehicle(vehicle);
-					System.out.println(gar.getVehicleList());
 				}
 				
 				/*Quad*/
@@ -402,7 +418,6 @@ public class ClientController extends JFrame implements ActionListener
 											   Integer.parseInt(tPS.getText()), Integer.parseInt(tCSP.getText()), Integer.parseInt(tKM.getText()),  
 											   tCol.getText(), Double.parseDouble(taddOption.getText())); 
 					gar.addVehicle(vehicle);
-					System.out.println(gar.getVehicleList());
 				}
 				
 				/*Motorbike*/
@@ -412,8 +427,10 @@ public class ClientController extends JFrame implements ActionListener
 											   Integer.parseInt(tPS.getText()), Integer.parseInt(tCSP.getText()), Integer.parseInt(tKM.getText()),
 											   tCol.getText(), Integer.parseInt(taddOption.getText())); 
 					gar.addVehicle(vehicle);
-					System.out.println(gar.getVehicleList());
 				}
+				
+				updateList();
+				mainWnd.repaint();
 			}
 		}
 	}

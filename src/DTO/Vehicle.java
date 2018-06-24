@@ -1,9 +1,9 @@
 package DTO;
 
-import java.util.ArrayList;
-
 /**
- * Vehicle class contains the vehicle definition
+ * Vehicle class
+ * @author Samuel
+ * contains the vehicle definition
  */
 public abstract class Vehicle {
 	protected String type;
@@ -18,7 +18,6 @@ public abstract class Vehicle {
 	/**
 	 * Constructor
 	 */
-
 	public Vehicle(String type, String brand, String model, double originalPrice, int hp, double consumption, int mileage,
 			String color) {
 		this.type = type;
@@ -29,6 +28,54 @@ public abstract class Vehicle {
 		this.consumption = consumption;
 		this.mileage = mileage;
 		this.color = color;
+	}
+
+	/**
+	 *  get brand
+	 * @return brand
+	 */
+	public String getBrand() {
+		return brand;
+	}
+
+	/**
+	 * get hp
+	 * @return hp
+	 */
+	public int getHp() {
+		return hp;
+	}
+
+	/**
+	 * get consumption
+	 * @return consumption
+	 */
+	public double getConsumption() {
+		return consumption;
+	}
+
+	/**
+	 * get mileage
+	 * @return mileage
+	 */
+	public int getMileage() {
+		return mileage;
+	}
+
+	/**
+	 * get color
+	 * @return color
+	 */
+	public String getColor() {
+		return color;
+	}
+
+	/**
+	 * get model
+	 * @return model
+	 */
+	public String getModel() {
+		return model;
 	}
 
 	/**

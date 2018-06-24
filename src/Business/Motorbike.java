@@ -9,6 +9,7 @@ import DTO.Vehicle;
 public class Motorbike extends Vehicle
 {
 	private double weight;
+	
 	/**
 	 * Constructor
 	 */
