@@ -30,6 +30,10 @@ public abstract class Vehicle {
 		this.color = color;
 	}
 
+	public String getType() {
+		return type;
+	}
+
 	/**
 	 *  get brand
 	 * @return brand

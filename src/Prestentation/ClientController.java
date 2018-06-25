@@ -1,8 +1,6 @@
 package Prestentation;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
@@ -15,7 +13,7 @@ import DTO.*;
  * contains the gui
  */
 @SuppressWarnings("serial")
-public class ClientController extends JFrame implements ActionListener
+public class ClientController extends JFrame implements ActionListener, MouseListener
 {
 	private ClientHelper CH = new ClientHelper();
 	
@@ -42,6 +40,7 @@ public class ClientController extends JFrame implements ActionListener
 		gar = new Garage();
 		index = 1;
 		createInterface();
+		createFormularItems();
 	}
 	
 	/**
@@ -79,40 +78,13 @@ public class ClientController extends JFrame implements ActionListener
 		mainWnd.setVisible(true);
 		
 		add.addActionListener(this);
-	}
-	
-	/**
-	 * Creat the type ComboBox
-	 */
-	private void addTypeBox()
-	{	
-		lAdd = new JLabel("Hinzufügen");
-		lAdd.setBounds(470,10,300,80);
-		lAdd.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));
-		
-		type = new JLabel("Typ:");
-		type.setBounds(470,100,150,35);
-		type.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
-		
-		String[] raceStr = {"Auto","Quad","Motorrad"};
-		cbType = new JComboBox<String>(raceStr);
-		cbType.setBounds(630,100,100,35);
-		cbType.setSelectedIndex(index);
-		cbType.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
-		
-		mainWnd.add(lAdd);
-		mainWnd.add(type);
-		mainWnd.add(cbType);
-		
-		cbType.addActionListener(this);
-		
-		mainWnd.repaint();
+		vehicleList.addMouseListener(this);
 	}
 	
 	/**
 	 * create formular
 	 */
-	private void createFormular()
+	private void createFormularItems()
 	{
 		brand = new JLabel("Marke:");
 		brand.setBounds(470,140,150,35);
@@ -176,6 +148,31 @@ public class ClientController extends JFrame implements ActionListener
 		bSave.setForeground(Color.WHITE);
 		bSave.setFont(new Font("Arial", Font.CENTER_BASELINE, 25));
 		
+		lAdd = new JLabel("Hinzufügen");
+		lAdd.setBounds(470,10,300,80);
+		lAdd.setFont(new Font("Arial", Font.CENTER_BASELINE, 40));
+		
+		type = new JLabel("Typ:");
+		type.setBounds(470,100,150,35);
+		type.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		
+		String[] raceStr = {"Auto","Quad","Motorrad"};
+		cbType = new JComboBox<String>(raceStr);
+		cbType.setBounds(630,100,100,35);
+		cbType.setSelectedIndex(index);
+		cbType.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		
+		addOption = new JLabel("Bodenfreiheit:");
+		addOption.setBounds(470,420,150,35);
+		addOption.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		
+		taddOption = new JTextField();
+		taddOption.setBounds(630,420,220,35);
+		taddOption.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		
+		mainWnd.add(lAdd);
+		mainWnd.add(type);
+		mainWnd.add(cbType);
 		mainWnd.add(brand);
 		mainWnd.add(tBrand);
 		mainWnd.add(model);
@@ -191,8 +188,65 @@ public class ClientController extends JFrame implements ActionListener
 		mainWnd.add(col);
 		mainWnd.add(tCol);
 		mainWnd.add(bSave);
+		mainWnd.add(addOption);
+		mainWnd.add(taddOption);
 		
 		bSave.addActionListener(this);
+		cbType.addActionListener(this);
+	}
+	
+	/**
+	 * show add formular
+	 */
+	private void showAddFormular()
+	{
+		/*Labels*/
+		if(lAdd != null)
+			lAdd.setVisible(true);
+		if(type != null)
+			type.setVisible(true);
+		if(brand != null)
+			brand.setVisible(true);
+		if(model != null)
+			model.setVisible(true);
+		if(price != null)
+			price.setVisible(true);
+		if(ps != null)
+			ps.setVisible(true);
+		if(csp != null)
+			csp.setVisible(true);
+		if(km != null)
+			km.setVisible(true);
+		if(col != null)
+			col.setVisible(true);
+		if(addOption != null)
+			addOption.setVisible(true);
+		if(lAdd != null)
+			lAdd.setVisible(true);
+		
+		/*TextFields*/
+		if(tBrand != null)
+			tBrand.setVisible(true);
+		if(tModel != null)
+			tModel.setVisible(true);
+		if(tPrice != null)
+			tPrice.setVisible(true);
+		if(tPS != null)
+			tPS.setVisible(true);
+		if(tCSP != null)
+			tCSP.setVisible(true);
+		if(tKM != null)
+			tKM.setVisible(true);
+		if(tCol != null)
+			tCol.setVisible(true);
+		if(taddOption != null)
+			taddOption.setVisible(true);
+		
+		/*ComboBox*/
+		if(cbType != null)
+			cbType.setVisible(true);
+		if(bSave != null)
+			bSave.setVisible(true);
 	}
 	
 	/**
@@ -208,41 +262,38 @@ public class ClientController extends JFrame implements ActionListener
 		/*Car*/
 		if(index == 0)
 		{
-			addOption = new JLabel("Anzhal Türen:");
-			addOption.setBounds(470,420,150,35);
-			addOption.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
-			
-			taddOption = new JTextField();
-			taddOption.setBounds(630,420,220,35);
-			taddOption.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+			if(addOption !=null)
+			{
+				addOption.setVisible(true);
+				addOption.setText("Anzahl Türen:");
+			}
+			if(addOption !=null)
+				taddOption.setVisible(true);
 		}	
 		
 		/*Quad*/
 		else if(index == 1)
 		{
-			addOption = new JLabel("Bodenfreiheit:");
-			addOption.setBounds(470,420,150,35);
-			addOption.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
-			
-			taddOption = new JTextField();
-			taddOption.setBounds(630,420,220,35);
-			taddOption.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+			if(addOption !=null)
+			{
+				addOption.setVisible(true);
+				addOption.setText("Bodenfreiheit:");
+			}
+			if(addOption !=null)
+				taddOption.setVisible(true);
 		}
 		
 		/*Motorbike*/
 		else if(index == 2)
 		{
-			addOption = new JLabel("Gewicht:");
-			addOption.setBounds(470,420,150,35);
-			addOption.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
-			
-			taddOption = new JTextField();
-			taddOption.setBounds(630,420,220,35);
-			taddOption.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+			if(addOption !=null)
+			{
+				addOption.setVisible(true);
+				addOption.setText("Gewicht:");
+			}
+			if(addOption !=null)
+				taddOption.setVisible(true);
 		}
-		
-		mainWnd.add(addOption);
-		mainWnd.add(taddOption);
 	}
 	
 	/**
@@ -340,6 +391,108 @@ public class ClientController extends JFrame implements ActionListener
 			return false;
 	}
 	
+	private void hideAddFormular()
+	{
+		/*Labels*/
+		if(brand != null)
+			brand.setVisible(false);
+		if(model != null)
+			model.setVisible(false);
+		if(price != null)
+			price.setVisible(false);
+		if(ps != null)
+			ps.setVisible(false);
+		if(csp != null)
+			csp.setVisible(false);
+		if(km != null)
+			km.setVisible(false);
+		if(col != null)
+			col.setVisible(false);
+		if(addOption != null)
+			addOption.setVisible(false);
+		if(lAdd != null)
+			lAdd.setVisible(false);
+		if(type != null)
+			type.setVisible(false);
+		
+		/*TextFields*/
+		if(tBrand != null)
+			tBrand.setVisible(false);
+		if(tModel != null)
+			tModel.setVisible(false);
+		if(tPrice != null)
+			tPrice.setVisible(false);
+		if(tPS != null)
+			tPS.setVisible(false);
+		if(tCSP != null)
+			tCSP.setVisible(false);
+		if(tKM != null)
+			tKM.setVisible(false);
+		if(tCol != null)
+			tCol.setVisible(false);
+		if(taddOption != null)
+			taddOption.setVisible(false);
+		
+		/*Button & combobox*/
+		if(cbType != null)
+			cbType.setVisible(false);
+		if(bSave != null)
+			bSave.setVisible(false);
+	}
+	
+	private void showVehicleData()
+	{
+		if(brand != null)
+			brand.setVisible(true);
+		if(model != null)
+			model.setVisible(true);
+		if(price != null)
+			price.setVisible(true);
+		if(ps != null)
+			ps.setVisible(true);
+		if(csp != null)
+			csp.setVisible(true);
+		if(km != null)
+			km.setVisible(true);
+		if(col != null)
+			col.setVisible(true);
+		if(type != null)
+			type.setVisible(true);
+		
+		int listIndex = vehicleList.getSelectedIndex();
+		
+		Vehicle vehicle = gar.getVehicleObjFromListByID(listIndex);
+		if(vehicle != null);
+		{
+			if(vehicle.getType() == "Car")
+			{
+				if(addOption !=null)
+				{
+					addOption.setVisible(true);
+					addOption.setText("Anzahl Türen:");
+				}
+			}
+			
+			else if(vehicle.getType() == "Quad")
+			{
+				if(addOption !=null)
+				{
+					addOption.setVisible(true);
+					addOption.setText("Bodenfreiheit:");
+				}
+			}
+			
+			else if(vehicle.getType() == "Motorbike")
+			{
+				if(addOption !=null)
+				{
+					addOption.setVisible(true);
+					addOption.setText("Gewicht:");
+				}
+			}
+		}
+	}
+	
 	/**
 	 * updates the vehicle list
 	 */
@@ -370,8 +523,7 @@ public class ClientController extends JFrame implements ActionListener
 			if(isAddMode == false)
 			{	
 				isAddMode = true;
-				addTypeBox();
-				createFormular();
+				showAddFormular();
 				index = cbType.getSelectedIndex();
 				createAdditionalOptions(index);	
 				mainWnd.repaint();
@@ -382,12 +534,7 @@ public class ClientController extends JFrame implements ActionListener
 		 * onUpdate type Combobox
 		 */
 		if(event.getSource() == cbType)
-		{
-			if(addOption != null)
-				mainWnd.remove(addOption);
-			if(taddOption != null)
-				mainWnd.remove(taddOption);
-			
+		{	
 			index = cbType.getSelectedIndex();
 			createAdditionalOptions(index);	
 			mainWnd.repaint();
@@ -403,7 +550,7 @@ public class ClientController extends JFrame implements ActionListener
 				/*Car*/
 				if(index == 0)
 				{
-					Vehicle vehicle = new Car("Quad", tBrand.getText(), tModel.getText(), Double.parseDouble(tPrice.getText()), 
+					Vehicle vehicle = new Car("Car", tBrand.getText(), tModel.getText(), Double.parseDouble(tPrice.getText()), 
 											   Integer.parseInt(tPS.getText()), Integer.parseInt(tCSP.getText()), Integer.parseInt(tKM.getText()), 
 											   tCol.getText(), Integer.parseInt(taddOption.getText())); 
 					gar.addVehicle(vehicle);
@@ -421,15 +568,44 @@ public class ClientController extends JFrame implements ActionListener
 				/*Motorbike*/
 				if(index == 2)
 				{
-					Vehicle vehicle = new Motorbike("Quad", tBrand.getText(), tModel.getText(), Double.parseDouble(tPrice.getText()), 
+					Vehicle vehicle = new Motorbike("Motorbike", tBrand.getText(), tModel.getText(), Double.parseDouble(tPrice.getText()), 
 											   Integer.parseInt(tPS.getText()), Integer.parseInt(tCSP.getText()), Integer.parseInt(tKM.getText()),
 											   tCol.getText(), Integer.parseInt(taddOption.getText())); 
 					gar.addVehicle(vehicle);
 				}
 				
+				hideAddFormular();
 				updateList();
+				isAddMode = false;
 				mainWnd.repaint();
 			}
 		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent event) 
+	{
+		if(event.getSource() == vehicleList)
+		{
+			hideAddFormular();
+			showVehicleData();
+			isAddMode = false;
+		}
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {	
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
 	}
 }
