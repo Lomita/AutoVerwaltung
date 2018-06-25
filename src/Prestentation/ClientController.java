@@ -678,6 +678,7 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 			if(isAddMode == false)
 			{	
 				isAddMode = true;
+				price.setText("Neupreis(CHF):");
 				showAddFormular();
 				index = cbType.getSelectedIndex();
 				createAdditionalOptions(index);	
@@ -731,6 +732,7 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 				
 				hideAddFormular();
 				updateList();
+				price.setText("Preis(CHF):");
 				showVehicleData();
 				isAddMode = false;
 				mainWnd.repaint();
