@@ -18,8 +18,6 @@ import DTO.*;
 public class ClientController extends JFrame implements ActionListener
 {
 	private ClientHelper CH = new ClientHelper();
-	private int ScreenWidth = (int)(CH.getScreenResolution().getWidth());
-	private int ScreenHeight = (int)(CH.getScreenResolution().getHeight());
 	
 	private JFrame mainWnd;
 	private JList<String> vehicleList;
@@ -53,8 +51,8 @@ public class ClientController extends JFrame implements ActionListener
 	{
 		mainWnd = new JFrame();
 		mainWnd.setLayout(null);
-		mainWnd.setSize(ScreenWidth / 2, ScreenHeight / 2);
-		mainWnd.setLocation(ScreenWidth / 4, ScreenHeight / 4);
+		mainWnd.setSize(910,550);
+		mainWnd.setLocation(400,300);	
 		mainWnd.setUndecorated(true);
 		
 		vehicleList = new JList<String>();
