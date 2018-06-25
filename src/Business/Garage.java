@@ -26,8 +26,8 @@ public class Garage {
 		return vehicleList.get(index);
 		
 	}
-	public void delVehicle(Vehicle vehicle) {
-		list.removeVehicle(vehicle);
+	public void delVehicleByIndex(int index) {
+		ArrayList<Vehicle> vehicleList = list.getVehicleList();
+		list.removeVehicle(vehicleList.get(index));
 	}
-	
 }

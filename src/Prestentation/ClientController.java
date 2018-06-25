@@ -23,7 +23,7 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 	private DefaultListModel<String> listModel = new DefaultListModel<>();
 	private JScrollPane scrollPane;
 	
-	private JButton add, bSave;
+	private JButton add, bSave, bDel;
 	private JLabel garage, type, lTypeData, brand, lBrandData, model, lModelData, 
 				   price, lPriceData, ps, lPSData, km, lKMData, csp, lCSPData, col,
 				   lColData, lAdd, addOption, laddOptionData;
@@ -53,9 +53,8 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 	{
 		mainWnd = new JFrame();
 		mainWnd.setLayout(null);
-		mainWnd.setSize(910,550);
+		mainWnd.setSize(910,600);
 		mainWnd.setLocation(400,300);	
-		mainWnd.setUndecorated(true);
 		
 		vehicleList = new JList<String>();
 		scrollPane = new JScrollPane(vehicleList);
@@ -113,7 +112,7 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 		tModel.setBounds(630,180,220,35);
 		tModel.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
-		price = new JLabel("Preis:");
+		price = new JLabel("Neupreis(CHF):");
 		price.setBounds(470,220,150,35);
 		price.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
@@ -137,7 +136,7 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 		tPS.setBounds(630,260,220,35);
 		tPS.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
-		csp = new JLabel("Verbrauch:");
+		csp = new JLabel("Verbrauch(l/h):");
 		csp.setBounds(470,300,150,35);
 		csp.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
@@ -149,7 +148,7 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 		tCSP.setBounds(630,300,220,35);
 		tCSP.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
-		km = new JLabel("KM-Stand:");
+		km = new JLabel("KM-Stand(km):");
 		km.setBounds(470,340,150,35);
 		km.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
@@ -178,6 +177,12 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 		bSave.setBackground(Color.BLACK);
 		bSave.setForeground(Color.WHITE);
 		bSave.setFont(new Font("Arial", Font.CENTER_BASELINE, 25));
+		
+		bDel = new JButton("Löschen");
+		bDel.setBounds(550,470,250,50);
+		bDel.setBackground(Color.RED);
+		bDel.setForeground(Color.BLACK);
+		bDel.setFont(new Font("Arial", Font.CENTER_BASELINE, 25));
 		
 		lAdd = new JLabel("Hinzufügen");
 		lAdd.setBounds(470,10,300,80);
@@ -238,7 +243,9 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 		mainWnd.add(lCSPData);
 		mainWnd.add(lColData);
 		mainWnd.add(laddOptionData);
+		mainWnd.add(bDel);
 		
+		bDel.addActionListener(this);
 		bSave.addActionListener(this);
 		cbType.addActionListener(this);
 	}
@@ -325,7 +332,7 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 			if(addOption !=null)
 			{
 				addOption.setVisible(true);
-				addOption.setText("Bodenfreiheit:");
+				addOption.setText("Bfreiheit(cm):");
 			}
 			if(addOption !=null)
 				taddOption.setVisible(true);
@@ -337,7 +344,7 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 			if(addOption !=null)
 			{
 				addOption.setVisible(true);
-				addOption.setText("Gewicht:");
+				addOption.setText("Gewicht(kg):");
 			}
 			if(addOption !=null)
 				taddOption.setVisible(true);
@@ -493,104 +500,151 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 	 */
 	private void showVehicleData()
 	{
-		if(brand != null)
-			brand.setVisible(true);
-		if(model != null)
-			model.setVisible(true);
-		if(price != null)
-			price.setVisible(true);
-		if(ps != null)
-			ps.setVisible(true);
-		if(csp != null)
-			csp.setVisible(true);
-		if(km != null)
-			km.setVisible(true);
-		if(col != null)
-			col.setVisible(true);
-		if(type != null)
-			type.setVisible(true);
-		
 		int listIndex = vehicleList.getSelectedIndex();
-		
-		Vehicle vehicle = gar.getVehicleObjFromListByID(listIndex);
-		if(vehicle != null);
+		if(listIndex >= 0)
 		{
-			if(vehicle.getType() == "Car")
-			{
-				if(addOption !=null)
-				{
-					addOption.setVisible(true);
-					addOption.setText("Anzahl Türen:");
-					laddOptionData.setText(String.valueOf(vehicle.getDoorAmount()));
-				}
-			}
+			Vehicle vehicle = gar.getVehicleObjFromListByID(listIndex);
+		
+			if(bDel != null)
+				bDel.setVisible(true);
+			if(brand != null)
+				brand.setVisible(true);
+			if(model != null)
+				model.setVisible(true);
+			if(price != null)
+				price.setVisible(true);
+			if(ps != null)
+				ps.setVisible(true);
+			if(csp != null)
+				csp.setVisible(true);
+			if(km != null)
+				km.setVisible(true);
+			if(col != null)
+				col.setVisible(true);
+			if(type != null)
+				type.setVisible(true);
 			
-			else if(vehicle.getType() == "Quad")
+			if(vehicle != null);
 			{
-				if(addOption !=null)
+				if(vehicle.getType() == "Car")
 				{
-					addOption.setVisible(true);
-					addOption.setText("Bodenfreiheit:");
-					laddOptionData.setText(String.valueOf(vehicle.getGroundClearance()));
+					if(addOption !=null)
+					{
+						addOption.setVisible(true);
+						addOption.setText("Anzahl Türen:");
+						laddOptionData.setText(String.valueOf(vehicle.getDoorAmount()));
+					}
 				}
-			}
-			
-			else if(vehicle.getType() == "Motorbike")
-			{
-				if(addOption !=null)
-				{
-					addOption.setVisible(true);
-					addOption.setText("Gewicht:");
-					laddOptionData.setText(String.valueOf(vehicle.getWeight()));
-				}
-			}
-			
-			if(lTypeData != null)
-			{
-				lTypeData.setVisible(true);
-				lTypeData.setText(vehicle.getType());
-			}
 				
+				else if(vehicle.getType() == "Quad")
+				{
+					if(addOption !=null)
+					{
+						addOption.setVisible(true);
+						addOption.setText("Bodenfreiheit:");
+						laddOptionData.setText(String.valueOf(vehicle.getGroundClearance()));
+					}
+				}
+				
+				else if(vehicle.getType() == "Motorbike")
+				{
+					if(addOption !=null)
+					{
+						addOption.setVisible(true);
+						addOption.setText("Gewicht:");
+						laddOptionData.setText(String.valueOf(vehicle.getWeight()));
+					}
+				}
+				
+				if(lTypeData != null)
+				{
+					lTypeData.setVisible(true);
+					lTypeData.setText(vehicle.getType());
+				}
+					
+				if(lBrandData != null)
+				{
+					lBrandData.setVisible(true);
+					lBrandData.setText(vehicle.getBrand());
+				}
+				
+				if(lModelData != null)
+				{
+					lModelData.setVisible(true);
+					lModelData.setText(vehicle.getModel());
+				}
+					
+				if(lPriceData != null)
+				{
+					lPriceData.setVisible(true);
+					lPriceData.setText(String.valueOf(vehicle.getCalculatedPrice()));
+				}
+				
+				if(lPSData != null)
+				{
+					lPSData.setVisible(true);
+					lPSData.setText(String.valueOf(vehicle.getHp()));
+				}
+					
+				if(lKMData != null)
+				{
+					lKMData.setVisible(true);
+					lKMData.setText(String.valueOf(vehicle.getMileage()));
+				}
+				if(lCSPData != null)
+				{
+					lCSPData.setVisible(true);
+					lCSPData.setText(String.valueOf(vehicle.getConsumption()));
+				}
+					
+				if(lColData != null)
+				{
+					lColData.setVisible(true);
+					lColData.setText(vehicle.getColor());
+				}
+			}
+
+		}
+		else
+		{
+			if(bDel != null)
+				bDel.setVisible(false);
+			if(brand != null)
+				brand.setVisible(false);
+			if(model != null)
+				model.setVisible(false);
+			if(price != null)
+				price.setVisible(false);
+			if(ps != null)
+				ps.setVisible(false);
+			if(csp != null)
+				csp.setVisible(false);
+			if(km != null)
+				km.setVisible(false);
+			if(col != null)
+				col.setVisible(false);
+			if(type != null)
+				type.setVisible(false);
+			if(addOption != null)
+				addOption.setVisible(false);
 			if(lBrandData != null)
-			{
-				lBrandData.setVisible(true);
-				lBrandData.setText(vehicle.getBrand());
-			}
-			
+				lBrandData.setVisible(false);
 			if(lModelData != null)
-			{
-				lModelData.setVisible(true);
-				lModelData.setText(vehicle.getModel());
-			}
-				
+				lModelData.setVisible(false);
 			if(lPriceData != null)
-			{
-				lPriceData.setVisible(true);
-				lPriceData.setText(String.valueOf(vehicle.getCalculatedPrice()));
-			}
-			
+				lPriceData.setVisible(false);
 			if(lPSData != null)
-			{
-				lPSData.setVisible(true);
-				lPSData.setText(String.valueOf(vehicle.getHp()));
-			}
-				
-			if(lKMData != null)
-			{
-				lKMData.setVisible(true);
-				lKMData.setText(String.valueOf(vehicle.getMileage()));
-			}
+				lPSData.setVisible(false);
 			if(lCSPData != null)
-			{
-				lCSPData.setVisible(true);
-				lCSPData.setText(String.valueOf(vehicle.getConsumption()));
-			}
-				
+				lCSPData.setVisible(false);
+			if(lKMData != null)
+				lKMData.setVisible(false);
 			if(lColData != null)
-			{
-				lColData.setVisible(true);
-				lColData.setText(vehicle.getColor());
-			}
+				lColData.setVisible(false);
+			if(lTypeData != null)
+				lTypeData.setVisible(false);
+			if(laddOptionData != null)
+				laddOptionData.setVisible(false);
 		}
 	}
 	
@@ -680,6 +734,20 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 				showVehicleData();
 				isAddMode = false;
 				mainWnd.repaint();
+			}	
+		}
+		
+		/**
+		 * Delete the Selected Object
+		 */
+		if(event.getSource() == bDel)
+		{
+			if(vehicleList.getSelectedIndex() >= 0)
+			{
+				gar.delVehicleByIndex(vehicleList.getSelectedIndex());
+				updateList();
+				showVehicleData();
+				mainWnd.repaint();
 			}
 		}
 	}
@@ -689,12 +757,16 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 	{
 		if(event.getSource() == vehicleList)
 		{
-			if(isAddMode == true)
+			
+			if(vehicleList.getSelectedIndex() >= 0)
 			{
-				hideAddFormular();
-				isAddMode = false;
+				if(isAddMode == true)
+				{
+					hideAddFormular();
+					isAddMode = false;
+				}
+				showVehicleData();
 			}
-			showVehicleData();
 		}
 	}
 
