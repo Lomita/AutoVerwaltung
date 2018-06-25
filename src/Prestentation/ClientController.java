@@ -5,6 +5,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 import Business.*;
+import Business.Motorbike;
 import DTO.*;
 
 /**
@@ -13,7 +14,7 @@ import DTO.*;
  * contains the gui
  */
 @SuppressWarnings("serial")
-public class ClientController extends JFrame implements ActionListener, MouseListener
+public class ClientController extends JFrame implements ActionListener, FocusListener
 {
 	private ClientHelper CH = new ClientHelper();
 	
@@ -23,7 +24,9 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 	private JScrollPane scrollPane;
 	
 	private JButton add, bSave;
-	private JLabel garage, type, brand, model, price, ps, km, csp, col, lAdd, addOption;
+	private JLabel garage, type, lTypeData, brand, lBrandData, model, lModelData, 
+				   price, lPriceData, ps, lPSData, km, lKMData, csp, lCSPData, col,
+				   lColData, lAdd, addOption, laddOptionData;
 	private JTextField tBrand, tModel, tPrice, tPS, tKM, tCSP, tCol, taddOption;
 	private JComboBox<String> cbType;
 	private int index;
@@ -78,7 +81,7 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 		mainWnd.setVisible(true);
 		
 		add.addActionListener(this);
-		vehicleList.addMouseListener(this);
+		vehicleList.addFocusListener(this);
 	}
 	
 	/**
@@ -90,6 +93,10 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 		brand.setBounds(470,140,150,35);
 		brand.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
+		lBrandData = new JLabel();
+		lBrandData.setBounds(630,140,220,35);
+		lBrandData.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
+		
 		tBrand = new JTextField();
 		tBrand.setBounds(630,140,220,35);
 		tBrand.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
@@ -97,6 +104,10 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 		model = new JLabel("Model/Name:");
 		model.setBounds(470,180,150,35);
 		model.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		
+		lModelData = new JLabel();
+		lModelData.setBounds(630,180,220,35);
+		lModelData.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
 		
 		tModel = new JTextField();
 		tModel.setBounds(630,180,220,35);
@@ -106,6 +117,10 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 		price.setBounds(470,220,150,35);
 		price.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
+		lPriceData = new JLabel();
+		lPriceData.setBounds(630,220,220,35);
+		lPriceData.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
+		
 		tPrice = new JTextField();
 		tPrice.setBounds(630,220,220,35);
 		tPrice.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
@@ -113,6 +128,10 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 		ps = new JLabel("Leistung(PS):");
 		ps.setBounds(470,260,150,35);
 		ps.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		
+		lPSData = new JLabel();
+		lPSData.setBounds(630,260,220,35);
+		lPSData.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
 		
 		tPS = new JTextField();
 		tPS.setBounds(630,260,220,35);
@@ -122,6 +141,10 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 		csp.setBounds(470,300,150,35);
 		csp.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
+		lCSPData = new JLabel();
+		lCSPData.setBounds(630,300,220,35);
+		lCSPData.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
+		
 		tCSP = new JTextField();
 		tCSP.setBounds(630,300,220,35);
 		tCSP.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
@@ -130,6 +153,10 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 		km.setBounds(470,340,150,35);
 		km.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
+		lKMData = new JLabel();
+		lKMData.setBounds(630,340,220,35);
+		lKMData.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
+		
 		tKM = new JTextField();
 		tKM.setBounds(630,340,220,35);
 		tKM.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
@@ -137,6 +164,10 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 		col = new JLabel("Color:");
 		col.setBounds(470,380,150,35);
 		col.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		
+		lColData = new JLabel();
+		lColData.setBounds(630,380,220,35);
+		lColData.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
 		
 		tCol = new JTextField();
 		tCol.setBounds(630,380,220,35);
@@ -156,6 +187,10 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 		type.setBounds(470,100,150,35);
 		type.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
+		lTypeData = new JLabel();
+		lTypeData.setBounds(630,100,220,35);
+		lTypeData.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
+		
 		String[] raceStr = {"Auto","Quad","Motorrad"};
 		cbType = new JComboBox<String>(raceStr);
 		cbType.setBounds(630,100,100,35);
@@ -165,6 +200,10 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 		addOption = new JLabel("Bodenfreiheit:");
 		addOption.setBounds(470,420,150,35);
 		addOption.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
+		
+		laddOptionData = new JLabel();
+		laddOptionData.setBounds(630,420,220,35);
+		laddOptionData.setFont(new Font("Arial", Font.CENTER_BASELINE, 18));
 		
 		taddOption = new JTextField();
 		taddOption.setBounds(630,420,220,35);
@@ -190,6 +229,15 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 		mainWnd.add(bSave);
 		mainWnd.add(addOption);
 		mainWnd.add(taddOption);
+		mainWnd.add(lTypeData);
+		mainWnd.add(lBrandData);
+		mainWnd.add(lModelData);
+		mainWnd.add(lPriceData);
+		mainWnd.add(lPSData);
+		mainWnd.add(lKMData);
+		mainWnd.add(lCSPData);
+		mainWnd.add(lColData);
+		mainWnd.add(laddOptionData);
 		
 		bSave.addActionListener(this);
 		cbType.addActionListener(this);
@@ -362,9 +410,9 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 			color = true;
 		}		
 		/*Additional Option Quad (double)*/
-		if(index == 1) 
+		if(index == 2 || index == 1) 
 		{
-			if(!(taddOption.getText().matches("\\b([0-9]{1,3})(\\.([0-9]))?\\b")) || taddOption.getText().equals(""))
+			if(!(taddOption.getText().matches("\\b([0-9]{1,5})(\\.([0-9]))?\\b")) || taddOption.getText().equals(""))
 				taddOption.setBorder(new LineBorder(Color.RED));
 			else
 			{
@@ -373,7 +421,7 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 			}
 		}
 		/*Additional Option Car and Motorbike (int)*/ 
-		else if(index == 2 || index == 0)
+		else if(index == 0)
 		{
 			if(!(taddOption.getText().matches("\\b([0-9]{1,3})\\b")) || taddOption.getText().equals(""))
 				taddOption.setBorder(new LineBorder(Color.RED));
@@ -440,6 +488,9 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 			bSave.setVisible(false);
 	}
 	
+	/**
+	 * update and show the vehicle data
+	 */
 	private void showVehicleData()
 	{
 		if(brand != null)
@@ -470,6 +521,7 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 				{
 					addOption.setVisible(true);
 					addOption.setText("Anzahl Türen:");
+					laddOptionData.setText(String.valueOf(vehicle.getDoorAmount()));
 				}
 			}
 			
@@ -479,6 +531,7 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 				{
 					addOption.setVisible(true);
 					addOption.setText("Bodenfreiheit:");
+					laddOptionData.setText(String.valueOf(vehicle.getGroundClearance()));
 				}
 			}
 			
@@ -488,9 +541,98 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 				{
 					addOption.setVisible(true);
 					addOption.setText("Gewicht:");
+					laddOptionData.setText(String.valueOf(vehicle.getWeight()));
 				}
 			}
+			
+			if(lTypeData != null)
+			{
+				lTypeData.setVisible(true);
+				lTypeData.setText(vehicle.getType());
+			}
+				
+			if(lBrandData != null)
+			{
+				lBrandData.setVisible(true);
+				lBrandData.setText(vehicle.getBrand());
+			}
+			
+			if(lModelData != null)
+			{
+				lModelData.setVisible(true);
+				lModelData.setText(vehicle.getModel());
+			}
+				
+			if(lPriceData != null)
+			{
+				lPriceData.setVisible(true);
+				lPriceData.setText(String.valueOf(vehicle.getCalculatedPrice()));
+			}
+			
+			if(lPSData != null)
+			{
+				lPSData.setVisible(true);
+				lPSData.setText(String.valueOf(vehicle.getHp()));
+			}
+				
+			if(lKMData != null)
+			{
+				lKMData.setVisible(true);
+				lKMData.setText(String.valueOf(vehicle.getMileage()));
+			}
+			if(lCSPData != null)
+			{
+				lCSPData.setVisible(true);
+				lCSPData.setText(String.valueOf(vehicle.getConsumption()));
+			}
+				
+			if(lColData != null)
+			{
+				lColData.setVisible(true);
+				lColData.setText(vehicle.getColor());
+			}
 		}
+	}
+	
+	/**
+	 * hide the vehicle data
+	 */
+	private void hideVehicleData() 
+	{
+		if(brand != null)
+			brand.setVisible(false);
+		if(model != null)
+			model.setVisible(false);
+		if(price != null)
+			price.setVisible(false);
+		if(ps != null)
+			ps.setVisible(false);
+		if(csp != null)
+			csp.setVisible(false);
+		if(km != null)
+			km.setVisible(false);
+		if(col != null)
+			col.setVisible(false);
+		if(type != null)
+			type.setVisible(false);
+		if(lTypeData != null)
+			lTypeData.setVisible(false);
+		if(lBrandData != null)
+			lBrandData.setVisible(false);
+		if(lModelData != null)
+			lModelData.setVisible(false);
+		if(lPriceData != null)
+			lPriceData.setVisible(false);
+		if(lPSData != null)
+			lPSData.setVisible(false);
+		if(lKMData != null)
+			lKMData.setVisible(false);
+		if(lCSPData != null)
+			lCSPData.setVisible(false);
+		if(lColData != null)
+			lColData.setVisible(false);
+		if(laddOptionData != null)
+			laddOptionData.setVisible(false);
 	}
 	
 	/**
@@ -570,7 +712,7 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 				{
 					Vehicle vehicle = new Motorbike("Motorbike", tBrand.getText(), tModel.getText(), Double.parseDouble(tPrice.getText()), 
 											   Integer.parseInt(tPS.getText()), Integer.parseInt(tCSP.getText()), Integer.parseInt(tKM.getText()),
-											   tCol.getText(), Integer.parseInt(taddOption.getText())); 
+											   tCol.getText(), Double.parseDouble(taddOption.getText())); 
 					gar.addVehicle(vehicle);
 				}
 				
@@ -583,29 +725,18 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent event) 
+	public void focusGained(FocusEvent event) 
 	{
 		if(event.getSource() == vehicleList)
 		{
 			hideAddFormular();
+			hideVehicleData();
 			showVehicleData();
 			isAddMode = false;
 		}
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {	
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
+	public void focusLost(FocusEvent arg0) {
 	}
 }

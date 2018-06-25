@@ -40,4 +40,13 @@ public class Quad extends Vehicle {
 				+ "]";
 	}
 
+	@Override
+	public double getWeight() {
+		return 0;
+	}
+
+	@Override
+	public int getDoorAmount() {
+		return 0;
+	}
 }

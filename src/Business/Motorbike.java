@@ -14,7 +14,7 @@ public class Motorbike extends Vehicle
 	 * Constructor
 	 */
 	public Motorbike(String type, String brand, String model, double originalPrice, int hp, double consumption, int mileage,
-			String color, int weight) {
+			String color, double weight) {
 		super(type, brand, model, originalPrice, hp, consumption, mileage, color);
 		this.weight = weight;
 	}
@@ -38,6 +38,14 @@ public class Motorbike extends Vehicle
 	public void setWeight(double weight) {
 		this.weight = weight;
 	}
-	
-	
+
+	@Override
+	public double getGroundClearance() {
+		return 0;
+	}
+
+	@Override
+	public int getDoorAmount() {
+		return 0;
+	}
 }

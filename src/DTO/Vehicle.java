@@ -30,6 +30,10 @@ public abstract class Vehicle {
 		this.color = color;
 	}
 
+	public abstract  double getWeight();
+	public abstract double getGroundClearance();
+	public abstract int getDoorAmount();
+	
 	public String getType() {
 		return type;
 	}
@@ -81,7 +85,7 @@ public abstract class Vehicle {
 	public String getModel() {
 		return model;
 	}
-
+	
 	/**
 	 * get the original price
 	 * @return returns the original price

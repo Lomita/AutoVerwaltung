@@ -41,6 +41,14 @@ public class Car extends Vehicle {
 				+ getDoorAmount() + ", getOriginalPrice()=" + getOriginalPrice() + ", getClass()=" + getClass()
 				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
-	
-	
+
+	@Override
+	public double getWeight() {
+		return 0;
+	}
+
+	@Override
+	public double getGroundClearance() {
+		return 0;
+	}
 }
