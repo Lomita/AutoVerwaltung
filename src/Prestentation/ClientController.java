@@ -14,7 +14,7 @@ import DTO.*;
  * contains the gui
  */
 @SuppressWarnings("serial")
-public class ClientController extends JFrame implements ActionListener, FocusListener
+public class ClientController extends JFrame implements ActionListener, MouseListener
 {
 	private ClientHelper CH = new ClientHelper();
 	
@@ -81,7 +81,7 @@ public class ClientController extends JFrame implements ActionListener, FocusLis
 		mainWnd.setVisible(true);
 		
 		add.addActionListener(this);
-		vehicleList.addFocusListener(this);
+		vehicleList.addMouseListener(this);
 	}
 	
 	/**
@@ -595,47 +595,6 @@ public class ClientController extends JFrame implements ActionListener, FocusLis
 	}
 	
 	/**
-	 * hide the vehicle data
-	 */
-	private void hideVehicleData() 
-	{
-		if(brand != null)
-			brand.setVisible(false);
-		if(model != null)
-			model.setVisible(false);
-		if(price != null)
-			price.setVisible(false);
-		if(ps != null)
-			ps.setVisible(false);
-		if(csp != null)
-			csp.setVisible(false);
-		if(km != null)
-			km.setVisible(false);
-		if(col != null)
-			col.setVisible(false);
-		if(type != null)
-			type.setVisible(false);
-		if(lTypeData != null)
-			lTypeData.setVisible(false);
-		if(lBrandData != null)
-			lBrandData.setVisible(false);
-		if(lModelData != null)
-			lModelData.setVisible(false);
-		if(lPriceData != null)
-			lPriceData.setVisible(false);
-		if(lPSData != null)
-			lPSData.setVisible(false);
-		if(lKMData != null)
-			lKMData.setVisible(false);
-		if(lCSPData != null)
-			lCSPData.setVisible(false);
-		if(lColData != null)
-			lColData.setVisible(false);
-		if(laddOptionData != null)
-			laddOptionData.setVisible(false);
-	}
-	
-	/**
 	 * updates the vehicle list
 	 */
 	private void updateList()
@@ -718,6 +677,7 @@ public class ClientController extends JFrame implements ActionListener, FocusLis
 				
 				hideAddFormular();
 				updateList();
+				showVehicleData();
 				isAddMode = false;
 				mainWnd.repaint();
 			}
@@ -725,18 +685,32 @@ public class ClientController extends JFrame implements ActionListener, FocusLis
 	}
 
 	@Override
-	public void focusGained(FocusEvent event) 
+	public void mouseClicked(MouseEvent event) 
 	{
 		if(event.getSource() == vehicleList)
 		{
-			hideAddFormular();
-			hideVehicleData();
+			if(isAddMode == true)
+			{
+				hideAddFormular();
+				isAddMode = false;
+			}
 			showVehicleData();
-			isAddMode = false;
 		}
 	}
 
 	@Override
-	public void focusLost(FocusEvent arg0) {
+	public void mousePressed(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
 	}
 }
