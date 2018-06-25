@@ -21,7 +21,7 @@ public class Car extends Vehicle {
 	public double getCalculatedPrice() {
 		double price = this.getOriginalPrice();
 		int numberOfDeduction= mileage / 10000;
-		price = price- (numberOfDeduction * (price/100*5));
+		price = price- (numberOfDeduction * (price/100*3));
 		return price < 0 ? 0 : price;
 	}
 
