@@ -55,6 +55,7 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 		mainWnd.setLayout(null);
 		mainWnd.setSize(910,600);
 		mainWnd.setLocation(400,300);	
+		mainWnd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		vehicleList = new JList<String>();
 		scrollPane = new JScrollPane(vehicleList);
@@ -202,7 +203,7 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 		cbType.setSelectedIndex(index);
 		cbType.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
-		addOption = new JLabel("Bodenfreiheit:");
+		addOption = new JLabel("Bfreiheit(cm):");
 		addOption.setBounds(470,420,150,35);
 		addOption.setFont(new Font("Arial", Font.CENTER_BASELINE, 20));
 		
@@ -524,7 +525,7 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 			if(type != null)
 				type.setVisible(true);
 			
-			if(vehicle != null);
+			if(vehicle != null)
 			{
 				if(vehicle.getType() == "Car")
 				{
@@ -541,7 +542,7 @@ public class ClientController extends JFrame implements ActionListener, MouseLis
 					if(addOption !=null)
 					{
 						addOption.setVisible(true);
-						addOption.setText("Bodenfreiheit:");
+						addOption.setText("Bfreiheit(cm):");
 						laddOptionData.setText(String.valueOf(vehicle.getGroundClearance()));
 					}
 				}
