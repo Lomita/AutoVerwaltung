@@ -16,23 +16,11 @@ import Prestentation.ClientController;
 public class Launch 
 {
 	/**
-	 * main
+	 * Start vom Programm
 	 * @param args
 	 */
 	public static void main(String[] args) 
 	{
-		@SuppressWarnings("unused")
 		ClientController infa = new ClientController();
-//		Testing:
-//		Garage garage=new Garage();
-//		Vehicle vehicle=new Car("Car", "BMW", "X1", 50000, 300, 6, 58000, "Blue", 5);
-//		garage.addVehicle(vehicle);
-//		Vehicle vehicle2=new Quad("Quad", "Honda", "asdf", 30000, 200, 5, 58000, "Red", 600);
-//		garage.addVehicle(vehicle2);
-//
-//		ArrayList<Vehicle> list=garage.getVehicleList();
-//		for (Vehicle v : list) {
-//			System.out.println(v);
-//		}
 	}
 }

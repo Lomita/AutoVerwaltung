@@ -8,13 +8,26 @@ import DTO.Vehicle;
  */
 public class Quad extends Vehicle {
 	private double groundClearance;
-
+	/**
+	 * Constructor
+	 * @param type
+	 * @param brand
+	 * @param model
+	 * @param originalPrice
+	 * @param hp
+	 * @param consumption
+	 * @param mileage
+	 * @param color
+	 * @param groundClearance
+	 */
 	public Quad(String type, String brand, String model, double originalPrice, int hp, double consumption, int mileage,
 			String color, double groundClearance) {
 		super(type, brand, model, originalPrice, hp, consumption, mileage, color);
 		this.groundClearance = groundClearance;
 	}
-
+	/**
+	 * Returns the calculated Price
+	 */
 	public double getCalculatedPrice() {
 		double price = this.getOriginalPrice();
 		int numberOfDeduction = mileage / 10000;

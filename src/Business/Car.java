@@ -17,14 +17,17 @@ public class Car extends Vehicle {
 		super(type, brand, model, originalPrice, hp, consumption, mileage, color);
 		this.doorAmount = doorAmount;
 	}
-
+	
+	/**
+	 * Calculates and returns the calculated price
+	 */
 	public double getCalculatedPrice() {
 		double price = this.getOriginalPrice();
 		int numberOfDeduction= mileage / 10000;
 		price = price- (numberOfDeduction * (price/100*3));
 		return price < 0 ? 0 : price;
 	}
-
+	
 	public int getDoorAmount() {
 		return doorAmount;
 	}

@@ -10,6 +10,9 @@ public class TestBusiness
 	Garage gar;
 	int index;
 	
+	/**
+	 * Vorbereitung für die Tests
+	 */
 	@Before
 	public void init()
 	{
@@ -17,6 +20,9 @@ public class TestBusiness
 		index = 0;
 	}
 	
+	/**
+	 * Hinzufügen eines Fahrzeugs testen
+	 */
 	@Test
 	public void testAddVehicle() 
 	{
@@ -25,6 +31,9 @@ public class TestBusiness
 		assertEquals(vehicle, gar.getVehicleObjFromListByID(index));
 	}
 	
+	/**
+	 * Preisberechnung testen
+	 */
 	@Test
 	public void testCalculatedPrice() 
 	{
