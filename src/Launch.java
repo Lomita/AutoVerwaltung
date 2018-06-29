@@ -21,6 +21,7 @@ public class Launch
 	 */
 	public static void main(String[] args) 
 	{
+		@SuppressWarnings("unused")
 		ClientController infa = new ClientController();
 	}
 }
