@@ -1,11 +1,3 @@
-/*
-import java.util.ArrayList;
-
-import Business.Car;
-import Business.Garage;
-import Business.Quad;
-import DTO.Vehicle;
-import Data.VehicleDAO;*/
 import Prestentation.ClientController;
 
 /**
